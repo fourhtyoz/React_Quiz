@@ -1,25 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react"
+import Overlay from "./components/Overlay"
+import Navbar from "./components/Navbar"
+import Main from "./components/Main"
+import Footer from "./components/Footer"
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export default function App() {
+    const [overlay, setOverlay] = React.useState(true)
+
+    function start() {
+        setOverlay(prev => !prev)
+    }
+
+    function end() {
+        setOverlay(prev =>! prev)
+    }
+
+
+    return (
+        <>
+            {overlay && <Overlay start={start}/>}
+            {!overlay && <Navbar />}
+            {!overlay && <Main />}
+            {!overlay && <Footer />}
+        </>
+    )
 }
-
-export default App;
